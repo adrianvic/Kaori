@@ -1,0 +1,134 @@
+@font-face {
+  font-family: "selawik";
+  src: url("../fonts/selawkl.ttf");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "selawik";
+  src: url("../fonts/selawk.ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "selawik";
+  src: url("../fonts/selawkb.ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    --background-color: rgb(53, 37, 39);
+    --text-color: white;
+    --accent-color: rgb(255, 182, 193);
+    user-select: none;
+}
+
+html,body { height: 100%; }
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: selawik;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--accent-color);
+}
+
+header {
+    margin: 2rem;
+}
+
+header h1 {
+    font-weight: 300;
+}
+
+main header {
+    margin: 2em 0 2em 0;
+}
+
+main {
+    margin: 0 2rem 2rem 2rem;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+main p {
+    margin-bottom: .6em;
+}
+
+button, input {
+    transition: .4s;
+    border: none;
+    border-bottom: medium solid var(--accent-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin-bottom: .6em;
+    padding: .8rem;
+}
+
+input {
+    padding: .4rem;
+    width: 100%;
+}
+
+input:focus,
+textarea:focus,
+button:hover {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--text-color);
+}
+
+.square_button {
+    color: var(--text-color)
+}
+
+.square_button:hover {
+    transform: translateY(-.4rem);
+}
+
+.highlighted {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.thin {
+    font-weight: 700;
+}
+
+.inputLabel {
+    margin-bottom: .2em;
+}
+
+.pagedMenu .menuPage {
+  transition: opacity 220ms ease;
+  opacity: 1;
+  will-change: opacity;
+}
+.pagedMenu .menuPage.fading-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pagedMenu .menuPage.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pagedMenu { flex: 1 1 auto; display: flex; flex-direction: column; }
+.pagedMenuPagesHelper { flex: 1 1 auto; overflow: auto; }
+.squareButtonHolder { flex: 0 0 auto; }

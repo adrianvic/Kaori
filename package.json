@@ -1,0 +1,33 @@
+{
+  "name": "org.adrianvictor.kaori",
+  "displayName": "Kaori",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "electron": "^38.2.2",
+    "electron-builder": "^26.0.12",
+    "sqlite-electron": "^3.3.5"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  },
+  "scripts": {
+    "electron:dev": "electron ./electron/main.js",
+    "electron:build": "electron-builder",
+    "cordova:build": "cordova build android",
+    "cordova": "cordova run android",
+    "postinstall": "install-app-deps"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}

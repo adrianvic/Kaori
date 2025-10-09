@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="./web_scripts/pagedMenu.js" defer></script>
+    <title>Kaori</title>
+  </head>
+  <body>
+    <main>
+      <div class="pagedMenu">
+        <div class="pagedMenuPagesHelper">
+          <div class="menuPage">
+            <header>
+              <h1>Bem Vindo a Kaori!</h1>
+            </header>
+            <p>Bem vindo ao seu calendário pessoal de nutrição, onde você pode planejar o seu consumo de cada elemento da sua dieta.</p>
+            <p>Nas próximas páginas você vai configurar alguns aspectos do app antes de começar o planejamento, clique em "Continuar" para começar.</p>
+          </div>
+          <div class="menuPage">
+            <header>
+              <h1>Deixando tudo pronto...</h1>
+            </header>
+            <p>Logo você vai poder utilizar Kaori, mas antes precisamos definir algumas informações sobre você. Nenhuma informação que você colocar aqui vai sair do seu dispositivo ;-)</p>
+            <p class="thin inputLabel">Nome</p>
+            <input type="text" name="" id="" placeholder="Ronaldo">
+            <p class="thin inputLabel">Consumo de Calorias</p>
+            <input type="number" name="" id="" placeholder="1800">
+            <p>Não sabe qual é o seu consumo de calorias? <a href="https://www.tuasaude.com/como-calcular-o-gasto-calorico/">Veja aqui.</a></p>
+          </div>
+        </div>
+        <div class="squareButtonHolder">
+          <button class="square_button pagedMenuPreviousPage"><span class="highlighted">🢀</span> Voltar</button>
+          <button class="square_button pagedMenuNextPage">Continuar <span class="highlighted">🢂</span></button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
