@@ -1,28 +1,66 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const sqlite = require('sqlite-electron');
+const db = require('./db');
 
-function createWindow() {
-    const win = new BrowserWindow({
-        width: 1024,
-        height: 768,
-        webPreferences: {
-          preload: path.join(__dirname, 'preload.js'),
-          contextIsolation: true,
-          nodeIntegration: false
-        }
-    });
+db.run("CREATE TABLE IF NOT EXISTS preferences (key TEXT PRIMARY KEY, value TEXT)");
+db.run(`CREATE TABLE IF NOT EXISTS foods (
+  name TEXT PRIMARY KEY,
+  calories INT,
+  serving INT,
+  description TEXT
+  )`);
 
-    const indexPath = path.join(__dirname, '..', 'www', 'index.html');
-    win.loadFile(indexPath);
+app.whenReady().then(async () => {
+  let page = 'index.html';
+
+  const res = await getAsync("SELECT value FROM preferences WHERE key = 'setupComplete'");
+
+  console.log(res.value);
+
+  if(!res.value || res.value == 'false') page = "setup.html";
+
+  const win = new BrowserWindow({
+    width: 1024,
+    height: 768,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false
+    }
+  });
+
+  const indexPath = path.join(__dirname, '..', 'www', page);
+  win.loadFile(indexPath);
+  win.webContents.openDevTools();
+
+});
+
+function getAsync(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => err ? reject(err) : resolve(row));
+  });
 }
 
-app.whenReady().then(createWindow);
+function allAsync(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => err ? reject(err) : resolve(rows));
+  });
+}
 
-ipcMain.handle('databasePath', (event, dbPath) => {
-    sqlite.dbPath = dbPath
-    return true
-})
-ipcMain.handle('executeQuery', async (event_name, query_name, fetch_name, val) => {
-    return await sqlite.executeQuery(query_name, fetch_name, val);
-})
+function runAsync(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function(err) {
+      if (err) reject(err);
+      else resolve({ lastID: this.lastID, changes: this.changes });
+    });
+  });
+}
+
+ipcMain.handle('db:getPreference', async (event, key) => {
+  row = await getAsync('SELECT value FROM preferences WHERE key = ?', [key])
+  return row ? row.value : null;
+});
+
+ipcMain.handle('db:setPreference', async (event, key, value) => {
+  return runAsync('INSERT OR REPLACE INTO preferences (key, value) VALUES (?, ?)', [key, value]);
+});

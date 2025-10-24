@@ -11,14 +11,17 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^14.0.1",
+    "cordova-sqlite-evcore-extbuild-free": "^0.18.0",
     "electron": "^38.2.2",
-    "electron-builder": "^26.0.12",
-    "sqlite-electron": "^3.3.5"
+    "electron-builder": "^26.0.12"
   },
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-sqlite-evcore-extbuild-free": {}
+    }
   },
   "scripts": {
     "electron:dev": "electron ./electron/main.js",

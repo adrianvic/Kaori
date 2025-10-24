@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'"
     />
     <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+    http-equiv="X-Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'"
     />
     <link rel="stylesheet" href="styles/main.css">
     <script src="./web_scripts/pagedMenu.js" defer></script>
+    <script src="./web_scripts/index.js" defer></script>
     <title>Kaori</title>
-  </head>
-  <body>
-    <main>
-      <div class="pagedMenu">
-        <div class="pagedMenuPagesHelper">
-          <div class="menuPage">
-            <header>
-              <h1>Bem Vindo a Kaori!</h1>
-            </header>
-            <p>Bem vindo ao seu calendário pessoal de nutrição, onde você pode planejar o seu consumo de cada elemento da sua dieta.</p>
-            <p>Nas próximas páginas você vai configurar alguns aspectos do app antes de começar o planejamento, clique em "Continuar" para começar.</p>
-          </div>
-          <div class="menuPage">
-            <header>
-              <h1>Deixando tudo pronto...</h1>
-            </header>
-            <p>Logo você vai poder utilizar Kaori, mas antes precisamos definir algumas informações sobre você. Nenhuma informação que você colocar aqui vai sair do seu dispositivo ;-)</p>
-            <p class="thin inputLabel">Nome</p>
-            <input type="text" name="" id="" placeholder="Ronaldo">
-            <p class="thin inputLabel">Consumo de Calorias</p>
-            <input type="number" name="" id="" placeholder="1800">
-            <p>Não sabe qual é o seu consumo de calorias? <a href="https://www.tuasaude.com/como-calcular-o-gasto-calorico/">Veja aqui.</a></p>
-          </div>
+</head>
+<body>
+        <div class="pagedMenu">
+            <div class="pagedMenuPagesHelper">
+                <!-- Home page -->
+                <div class="menuPage indexPage">
+                    <header>
+                        <h1 id="homeTitle">Bem vindo.</h1>
+                    </header>
+                    <p>Hmm, é impressão minha ou isso aqui está um pouco vazio? <a role="button" href="#" class="pagedMenuPageButton noTextDecoration" data-page="1">Vamos criar seu cardápio de hoje, ou melhor, planejar a sua semana!</a></p>
+                </div>
+                
+                <!-- Menus -->
+                <div class="menuPage indexPage">
+                    <header>
+                        <h1>Seus cardápios</h1>
+                    </header>
+                </div>
+
+                <!-- Week plan -->
+                <div class="menuPage indexPage">
+                    <header>
+                        <h1>Planejamento semanal</h1>
+                    </header>
+                </div>
+
+                <!-- Items -->
+                <div class="menuPage indexPage">
+                    <header>
+                        <h1>Alimentos</h1>
+                        <input type="text" id="foodName" placeholder="Name">
+                        <input type="number" id="foodCalories" placeholder="Calories per serving">
+                        <input type="text" id="foodDescription" placeholder="Description">
+                        <input type="int" id="foodServing" placeholder="Serving size">
+                        <button id="addFood">Add food</button>
+                    </header>
+                    <div id="foodPageList">
+
+                    </div>
+                </div>
+            </div>
+            <div class="bottomNavigation">
+                <button class="pagedMenuPageButton" data-page="0">Início</button>
+                <button class="pagedMenuPageButton" data-page="1">Cardápios</button>
+                <button class="pagedMenuPageButton" data-page="2">Semana</button>
+                <button class="pagedMenuPageButton" data-page="3">Alimentos</button>
+            </div>
         </div>
-        <div class="squareButtonHolder">
-          <button class="square_button pagedMenuPreviousPage"><span class="highlighted">🢀</span> Voltar</button>
-          <button class="square_button pagedMenuNextPage">Continuar <span class="highlighted">🢂</span></button>
-        </div>
-      </div>
-    </main>
-  </body>
+</body>
 </html>

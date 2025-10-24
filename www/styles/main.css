@@ -30,6 +30,26 @@
     --text-color: white;
     --accent-color: rgb(255, 182, 193);
     user-select: none;
+    --box-shadow: 2px 7px 5px rgba(0,0,0,0.3),
+    0px -4px 10px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar {
+  width: .5rem;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color)
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-color);
 }
 
 html,body { height: 100%; }
@@ -46,8 +66,12 @@ a {
     color: var(--accent-color);
 }
 
+.noTextDecoration {
+  text-decoration: none;
+}
+
 header {
-    margin: 2rem;
+    margin: 2rem 0 2rem 0;
 }
 
 header h1 {
@@ -92,11 +116,11 @@ button:hover {
   border-color: var(--text-color);
 }
 
-.square_button {
+.squareButton {
     color: var(--text-color)
 }
 
-.square_button:hover {
+.squareButton:hover {
     transform: translateY(-.4rem);
 }
 
@@ -132,3 +156,26 @@ button:hover {
 .pagedMenu { flex: 1 1 auto; display: flex; flex-direction: column; }
 .pagedMenuPagesHelper { flex: 1 1 auto; overflow: auto; }
 .squareButtonHolder { flex: 0 0 auto; }
+
+.bottomNavigation button {
+  border: none;
+  outline: medium solid transparent;
+}
+
+.bottomNavigation button.selected {
+  outline-color: var(--accent-color);
+  transform: translateY(-.4rem);
+}
+
+.indexPage {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.bottomNavigation {
+  border-top: medium solid var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+  gap: .5em;
+}
